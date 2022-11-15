@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:retrofit_test/src/bloc/movies_bloc.dart';
-import 'package:retrofit_test/src/model/item/movie_model.dart';
+import 'package:retrofit_test/src/model/movie/movie_model.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAllMovies();
+    moviesBloc.fetchAllMovies();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Popular Movies'),
       ),
       body: StreamBuilder(
-        stream: bloc.allMovies,
+        stream: moviesBloc.movies,
         builder: (context, AsyncSnapshot<MovieModel> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);

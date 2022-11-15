@@ -21,7 +21,7 @@ class _MovieProvider implements MovieProvider {
   String? baseUrl;
 
   @override
-  Future<MovieModel> getTasks({apiKey = _apiKey}) async {
+  Future<MovieModel> getMovie({apiKey = _apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'api_key': apiKey};
     final _headers = <String, dynamic>{};

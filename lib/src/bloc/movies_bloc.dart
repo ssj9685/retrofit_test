@@ -1,17 +1,15 @@
-import 'package:dio/dio.dart';
-import 'package:retrofit_test/src/model/item/movie_model.dart';
-import 'package:retrofit_test/src/resource/movie_provider/movie_provider.dart';
+import 'package:retrofit_test/src/model/movie/movie_model.dart';
+import 'package:retrofit_test/src/resource/repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MoviesBloc {
+  final _repository = Repository();
   final _moviesFetcher = PublishSubject<MovieModel>();
 
-  Stream<MovieModel> get allMovies => _moviesFetcher.stream;
+  Stream<MovieModel> get movies => _moviesFetcher.stream;
 
   void fetchAllMovies() async {
-    final dio = Dio();
-    final movieProvider = MovieProvider(dio);
-    MovieModel movieModel = await movieProvider.getTasks();
+    MovieModel movieModel = await _repository.movieProvider.getMovie();
     _moviesFetcher.sink.add(movieModel);
   }
 
@@ -20,4 +18,4 @@ class MoviesBloc {
   }
 }
 
-final bloc = MoviesBloc();
+final moviesBloc = MoviesBloc();

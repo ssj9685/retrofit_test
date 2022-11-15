@@ -1,6 +1,6 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
-import 'package:retrofit_test/src/model/item/movie_model.dart';
+import 'package:retrofit_test/src/model/movie/movie_model.dart';
 
 part 'movie_provider.g.dart';
 
@@ -11,7 +11,7 @@ abstract class MovieProvider {
   factory MovieProvider(Dio dio) = _MovieProvider;
 
   @GET("/3/movie/popular")
-  Future<MovieModel> getTasks({
+  Future<MovieModel> getMovie({
     @Query("api_key") String apiKey = _apiKey,
   });
 }
